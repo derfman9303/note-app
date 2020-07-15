@@ -3,8 +3,8 @@ import './App.css';
 import Nav from './components/Nav';
 import List from './components/List';
 import Note from './components/Note';
-import { render } from '@testing-library/react';
 import axios from 'axios';
+import urlFor from './helpers/urlFor';
 
 class App extends Component {
   constructor() {
@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   getNotes = () => {
-    axios.get('https://frederic-note-api.herokuapp.com/notes')
+    axios.get(urlFor('notes'))
     .then((res) => console.log(res.data))
     .catch((err) => console.log(err.response.data));
   }
