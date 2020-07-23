@@ -34,7 +34,15 @@ class App extends Component {
     .catch((err) => console.log(err.response.data) );
   }
 
-  submitNote = (data) => {
+  performSubmissionRequest = (data, id) => {
+    if (id) {
+      return axios.patch(urlFor(`notes/${id}`), data);
+    } else {
+      return axios.post(urlFor('notes'), data)
+    }
+  }
+
+  submitNote = (data, id) => {
     axios.post(urlFor('notes'), data)
     .then((res) => this.setState({ showNote: false }) )
     .catch((err) => console.log(err.response.data) );
